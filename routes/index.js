@@ -8,15 +8,18 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
+// Pagina de ayuda
+router.get('/help', function(req, res, next) {
+    res.render('help');
+});
+
 // Pagina de creditos
 router.get('/author', function(req, res, next) {
     res.render('author');
 });
 
-
 // Autoload de rutas que usen :quizId
 router.param('quizId', quizController.load);
-
 
 // Definición de rutas de /quizzes
 router.get('/quizzes',                     quizController.index);
@@ -29,6 +32,5 @@ router.delete('/quizzes/:quizId(\\d+)',    quizController.destroy);
 
 router.get('/quizzes/:quizId(\\d+)/play',  quizController.play);
 router.get('/quizzes/:quizId(\\d+)/check', quizController.check);
-
 
 module.exports = router;
