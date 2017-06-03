@@ -41,6 +41,13 @@ router.get('/', function (req, res, next) {
     res.render('index');
 });
 
+
+// Pagina de ayuda
+router.get('/help', function(req, res, next) {
+    res.render('help');
+});
+
+
 // Pagina de creditos
 router.get('/author', function (req, res, next) {
     res.render('author');
@@ -86,7 +93,6 @@ router.delete('/users/:userId(\\d+)',
 router.get('/users/:userId(\\d+)/quizzes', quizController.index);     // ver las preguntas de un usuario
 
 
-
 // Definición de rutas de /quizzes
 router.get('/quizzes',
     quizController.index);
@@ -115,6 +121,9 @@ router.get('/quizzes/:quizId(\\d+)/play',
     quizController.play);
 router.get('/quizzes/:quizId(\\d+)/check',
     quizController.check);
+
+router.get('/quizzes/randomplay',                   quizController.randomplay);
+router.get('/quizzes/randomcheck/:quizId(\\d+)',    quizController.randomcheck);
 
 
 router.get('/quizzes/:quizId(\\d+)/tips/new',
