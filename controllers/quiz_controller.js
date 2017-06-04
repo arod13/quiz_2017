@@ -9,7 +9,7 @@ exports.load = function (req, res, next, quizId) {
 
     models.Quiz.findById(quizId, {
         include: [
-            models.Tip,
+            {model: models.Tip, include: [{model: models.User, as: 'Author'}]},
             {model: models.User, as: 'Author'}
         ]
     })
@@ -262,6 +262,8 @@ exports.randomplay = function (req, res, next) {
 
 // GET /quizzes/randomcheck/:quizId(\\d+)
 exports.randomcheck = function (req, res, next) {
+
+    req.session.answered_questions = req.session.answered_questions || [0];
 
     var answer = req.query.answer || "";    // Guardado de la respuesta del jugador
 

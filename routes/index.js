@@ -126,6 +126,7 @@ router.get('/quizzes/randomplay',                   quizController.randomplay);
 router.get('/quizzes/randomcheck/:quizId(\\d+)',    quizController.randomcheck);
 
 
+// Definición de rutas referidas a Tips
 router.get('/quizzes/:quizId(\\d+)/tips/new',
     sessionController.loginRequired,
     tipController.new);
@@ -138,6 +139,7 @@ router.put('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)/accept',
     tipController.accept);
 router.delete('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)',
     sessionController.loginRequired,
+    tipController.adminOrAuthorRequired,
     tipController.destroy);
 
 
